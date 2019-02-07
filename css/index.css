@@ -1,0 +1,12 @@
+/* Start general css*/
+
+header{
+    font-size: 5em;
+    text-align: center;
+    margin: 0.2em;
+}
+
+p {
+    font-size: 1.4em;
+    margin: 0 1em;
+}
