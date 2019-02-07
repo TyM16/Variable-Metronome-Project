@@ -11,7 +11,7 @@ nav {
     font-size: 2em;
     width: 100%;
     overflow: hidden;
-    background-color: teal;
+    background-color: rgb(90, 0, 0);
     position: sticky;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 0 20px 0 black;
@@ -33,12 +33,12 @@ nav ul li{
 }
 
 nav ul li:hover{
-    background-color: lightskyblue;
+    background-color: maroon;
 }
 
 nav ul li a{
     text-decoration: none;
-    color: darkblue;
+    color: white;
 }
 
 /* ----------------------End code used for all pages--------------------------*/

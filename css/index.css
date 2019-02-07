@@ -1,12 +1,22 @@
 /* Start general css*/
 
+body{
+    background-color: rgb(40,40,40);
+}
+
 header{
     font-size: 5em;
     text-align: center;
-    margin: 0.2em;
+    margin: 0.2em 0.2em 1em 0.2em;
+    color: rgb(209, 206, 206);
+}
+
+header img{
+    margin-right: 0.5em;
 }
 
 p {
-    font-size: 1.4em;
-    margin: 0 1em;
+    font-size: 1.8em;
+    margin: 0.7em 7em;
+    color: rgb(209, 206, 206);
 }
