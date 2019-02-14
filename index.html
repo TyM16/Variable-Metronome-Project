@@ -5,6 +5,8 @@
         <title>Index</title>
         <link type="text/css" href="css/base.css" rel="stylesheet">
         <link type="text/css" href="css/index.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script> <!--Include Jquery-->
+        <script src="js/index.js"></script>
     </head>
     <body>
     <nav>
@@ -19,6 +21,13 @@
     <header><img src="images/circle.png" alt="Emblem">Variable Metronome Project - VMP<hr></header>
     <br>
 
+    <div class="mockScroller"> <!--Div used to set flex state for buttons and image-->
+        <button id="mockButtonLeft"><</button>
+        <img src="images/VMPMock1.jpg" alt="Mock Application" class="mockImage">
+        <button id="mockButtonRight">></button>
+    </div>
+
+    <br>
     <p>VMP is the metronome for the modern musician, right on your phone or computer. It's goal is to eliminate the need to interrupt practice to update your device's time keeping.</p><br>
     <p>At it's core we keep it simple. Just give the timing you want the app to follow via direct input or audio file. No complex functions, just you and your music without needless hassle.</p><br>
     <p>The variable metronome will have functionality to interpret various audio file type's timing and translate it into a concise, auto transitioning session.</p><br>
