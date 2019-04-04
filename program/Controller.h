@@ -5,11 +5,14 @@
 #include <vector>
 
 #include "Metronome.h"
+#include "Record.h"
 
 class Controller
 {
 private:
-	Metronome * theMetronome;
+	Metronome* theMetronome;
+	Record* theRecord;
+
 	/*
 	double bpmSetting;
 	int timeSigTop;
@@ -24,11 +27,13 @@ private:
 	// Holds how many changes total in the music.
 	int totalChanges;
 
-
 public:
 
 	Controller() {
 		theMetronome = new Metronome();  // Inititalize the metronome.
+
+		//TODO: Move record and set it so we pick either a new record or load an xml, make new record.
+		theRecord = new Record();        // Initialize the Record.
 	}
 
 	void mainMenu() 
@@ -59,11 +64,11 @@ public:
 		}
 
 		for (int i = 0; i != totalChanges; i++) { // Use the data to drive the metronome and update at each segment, stop when we reach the end of the piece.
-			theMetronome->setBpm(bpmSetting[i]);
-			theMetronome->setTimeSig(timeSigTop[i]);
-			theMetronome->setNumMeasures(numMeasures[i]);
+			theRecord->setBpm(bpmSetting[i]);
+			theRecord->setTimeSig(timeSigTop[i]);
+			theRecord->setNumMeasures(numMeasures[i]);
 
-			theMetronome->startMetronome();
+			theMetronome->startMetronome(theRecord);
 		}
 	}
 };
