@@ -13,6 +13,7 @@ MainComponent::MainComponent()
 {
     setSize (600, 400);
     addAndMakeVisible(metronome); //Make it so our component shows up.
+	addAndMakeVisible(interface);
 }
 
 MainComponent::~MainComponent()
@@ -22,6 +23,7 @@ MainComponent::~MainComponent()
 //==============================================================================
 void MainComponent::paint (Graphics& g)
 {
+	g.fillAll(Colour(0xff323e44)); //Set background color here.
 }
 
 void MainComponent::resized()
@@ -31,4 +33,5 @@ void MainComponent::resized()
     // update their positions.
     
     metronome.setBounds(getLocalBounds()); // Set the bounds for the component to the bounds of the parent (main component).
+	interface.setBounds(getLocalBounds());
 }

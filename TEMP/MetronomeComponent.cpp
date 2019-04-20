@@ -14,7 +14,10 @@
 //==============================================================================
 MetronomeComponent::MetronomeComponent()
 {
-	metronomeController = new Controller(); //Make the controller object
+	theMetronome = new Metronome();  // Inititalize the metronome.
+									 //TODO: Move record and set it so we pick either a new record or load an xml, make new record.
+	theRecord = new Record();        // Initialize the Record.
+
 	setFramesPerSecond(0); //How fast should the window update per second. We can and should reset this later. We can also set 0 to stop animating.
 }
 
@@ -26,7 +29,6 @@ int x = 1;
 
 void MetronomeComponent::paint (Graphics& g)
 {
-	update();
 
 	g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 	g.setColour(getLookAndFeel().findColour(Slider::thumbColourId));
@@ -40,8 +42,6 @@ void MetronomeComponent::paint (Graphics& g)
 	
 	g.drawSingleLineText((String)(x), getParentWidth() / 2, getParentHeight() / 2, Justification::horizontallyJustified);
 	x=x++;
-
-	metronomeController->mainMenu();
 	;
 }
 
