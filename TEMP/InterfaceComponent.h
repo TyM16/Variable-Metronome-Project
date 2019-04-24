@@ -39,7 +39,7 @@ class InterfaceComponent  : public Component,
 {
 public:
     //==============================================================================
-	InterfaceComponent ();
+    InterfaceComponent ();
     ~InterfaceComponent();
 
     //==============================================================================
@@ -61,12 +61,12 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 	MetronomeComponent* metronomeComp;
 
-	bool animationOn = false; //REMOVE TEMP VARIABLE. Used to set metronome component animation on and off when a button is clicked.
+	bool animationOn; //REMOVE TEMP VARIABLE. Used to set metronome component animation on and off when a button is clicked.
     //[/UserVariables]
 
     //==============================================================================
-    std::unique_ptr<Label> label;
-    std::unique_ptr<TextButton> textButton;
+    std::unique_ptr<Label> mainMenuTitle;
+    std::unique_ptr<TextButton> mainMenuTextButton;
 
 
     //==============================================================================

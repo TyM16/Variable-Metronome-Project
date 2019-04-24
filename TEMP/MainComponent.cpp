@@ -12,7 +12,7 @@
 MainComponent::MainComponent()
 {
     setSize (600, 400);
-    addAndMakeVisible(metronome); //Make it so our component shows up.
+    addAndMakeVisible(metronome); //Add and make it so our component shows up.
 	addAndMakeVisible(interface);
 	interface.setMetronomePtr(&metronome); //Use this to get the pointer to the metronome component to the interface component.
 }

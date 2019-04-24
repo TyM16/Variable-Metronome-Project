@@ -40,7 +40,6 @@ private:
 	Record* theRecord;
 
 	int totalChanges; // Holds how many changes total in the music.
-	
 	int metronomeMode; //Set this to switch between modes. 0 is general metronome and 1 is variable metronome!
 
 	//Function prototypes.
