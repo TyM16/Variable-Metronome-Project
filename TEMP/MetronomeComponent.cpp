@@ -19,6 +19,8 @@ MetronomeComponent::MetronomeComponent()
 	theRecord = new Record();        // Initialize the Record.
 
 	setFramesPerSecond(0); //How fast should the window update per second. We can and should reset this later. We can also set 0 to stop animating.
+
+	metronomeMode = 0;
 }
 
 MetronomeComponent::~MetronomeComponent()
@@ -42,7 +44,16 @@ void MetronomeComponent::paint (Graphics& g)
 	
 	g.drawSingleLineText((String)(x), getParentWidth() / 2, getParentHeight() / 2, Justification::horizontallyJustified);
 	x=x++;
-	;
+
+	if (metronomeMode == 0) {
+		generalMetronome(g);
+	}
+
+	else if (metronomeMode == 1) {
+		variableMetronome(g);
+	}
+
+	else {/*If we reach here, we have an error!!*/};
 }
 
 void MetronomeComponent::resized()
@@ -52,5 +63,15 @@ void MetronomeComponent::resized()
 
 }
 
+void MetronomeComponent::update() {}; // Define abstract from parent class here. Define what happens on refresh.
+
 /* -------------------CUSTOM METHODS-------------------- */
 
+void MetronomeComponent::resetTimerBPMIn(double clockSpeedBPM) //Use this to readjust the timer for our metronome to be accurate. Takes in BPM and converts to Frames per sec. 
+{
+	setFramesPerSecond(clockSpeedBPM / 60);
+};
+
+void MetronomeComponent::generalMetronome(Graphics& g) {};
+
+void MetronomeComponent::variableMetronome(Graphics& g) {};

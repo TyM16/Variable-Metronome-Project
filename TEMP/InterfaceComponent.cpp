@@ -21,6 +21,7 @@
 //[/Headers]
 
 #include "InterfaceComponent.h"
+#include "MetronomeComponent.h"
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
 //[/MiscUserDefs]
@@ -55,7 +56,6 @@ InterfaceComponent::InterfaceComponent ()
     //[/UserPreSize]
 
     setSize (600, 400);
-
 
     //[Constructor] You can add your own custom stuff here..
     //[/Constructor]
@@ -93,6 +93,8 @@ void InterfaceComponent::resized()
     //[/UserResized]
 }
 
+bool on = false; //REMOVE TEMP VARIABLE
+
 void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
@@ -101,6 +103,14 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == textButton.get())
     {
         //[UserButtonCode_textButton] -- add your button handler code here..
+		if (on == false) {
+			metronomeComp->setFramesPerSecond(60);
+			on = true;
+		}
+		else {
+			metronomeComp->setFramesPerSecond(0);
+			on = false;
+		}
         //[/UserButtonCode_textButton]
     }
 
@@ -108,9 +118,51 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
     //[/UserbuttonClicked_Post]
 }
 
-
+//-------------------------CUSTOM METHODS-------------------------
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void InterfaceComponent::setMetronomePtr(MetronomeComponent* tempMetPtr)
+{
+	metronomeComp = tempMetPtr;
+}
+
+/*
+void mainMenu() //Main display to use before the animation section. Used as option screen to set things up, previously in the Controller.h
+{
+std::cout << "Welcome to the metronome controller, your window to the metronome!" << std::endl;
+
+std::cout << "How many tempo/timeSig changes are there total?: ";
+std::cin >> totalChanges;
+
+for (int changeCount = 0; changeCount != totalChanges; changeCount++) { // While there are still more unique segments in the piece, ask for data and push to vectors.
+int tempBpm;
+int tempTimeSig;
+int tempMeasures;
+
+std::cout << "Taking data on segment " << changeCount << "." << std::endl;
+std::cout << "Please input a bpm as a double: "; //Input some other bpm, only a double/int or program crashes.
+std::cin >> tempBpm;
+bpmSetting.push_back(tempBpm);
+
+
+std::cout << "What is the timesignature number on the top?: ";
+std::cin >> tempTimeSig;
+timeSigTop.push_back(tempTimeSig);
+
+std::cout << "For how many measures?: ";
+std::cin >> tempMeasures;
+numMeasures.push_back(tempMeasures);
+}
+
+for (int i = 0; i != totalChanges; i++) { // Use the data to drive the metronome and update at each segment, stop when we reach the end of the piece.
+theRecord->setBpm(bpmSetting[i]);
+theRecord->setTimeSig(timeSigTop[i]);
+theRecord->setNumMeasures(numMeasures[i]);
+
+theMetronome->startMetronome(theRecord);
+}
+}
+*/
 //[/MiscUserCode]
 
 

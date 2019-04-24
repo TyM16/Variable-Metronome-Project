@@ -20,8 +20,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-
-
 //==============================================================================
 /*
 */
@@ -33,24 +31,23 @@ public:
 
 	void paint(Graphics&) override;
 	void resized() override;
-	void update() override // Define abstract from parent class here. Define what happens on refresh.
-	{
-	}; 
-	void resetTimerBPMIn(double clockSpeedBPM) //Use this to readjust the timer for our metronome to be accurate. Takes in BPM and converts to Frames per sec. 
-	{
-		setFramesPerSecond(clockSpeedBPM/60);
-	};
+	void update() override; // Define abstract from parent class here. Define what happens on refresh.
 
 private:
 
+	//Members
 	Metronome* theMetronome;
 	Record* theRecord;
 
-
-
-	// Holds how many changes total in the music.
-	int totalChanges;
+	int totalChanges; // Holds how many changes total in the music.
 	
+	int metronomeMode; //Set this to switch between modes. 0 is general metronome and 1 is variable metronome!
+
+	//Function prototypes.
+
+	void resetTimerBPMIn(double clockSpeedBPM);
+	void generalMetronome(Graphics& g);
+	void variableMetronome(Graphics& g);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MetronomeComponent)
 
