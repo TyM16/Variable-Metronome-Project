@@ -47,6 +47,7 @@ public:
 
 
 	void setMetronomePtr(MetronomeComponent* tempMetPtr); //Use this to set the pointer to the metronome object.
+	void mainMenu(); //The main menu for the aplication.
 
     //[/UserMethods]
 
@@ -59,6 +60,8 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 	MetronomeComponent* metronomeComp;
+
+	bool animationOn = false; //REMOVE TEMP VARIABLE. Used to set metronome component animation on and off when a button is clicked.
     //[/UserVariables]
 
     //==============================================================================

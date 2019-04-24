@@ -93,8 +93,6 @@ void InterfaceComponent::resized()
     //[/UserResized]
 }
 
-bool on = false; //REMOVE TEMP VARIABLE
-
 void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
@@ -103,13 +101,13 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == textButton.get())
     {
         //[UserButtonCode_textButton] -- add your button handler code here..
-		if (on == false) {
+		if (animationOn == false) {
 			metronomeComp->setFramesPerSecond(60);
-			on = true;
+			animationOn = true;
 		}
 		else {
 			metronomeComp->setFramesPerSecond(0);
-			on = false;
+			animationOn = false;
 		}
         //[/UserButtonCode_textButton]
     }
@@ -127,9 +125,9 @@ void InterfaceComponent::setMetronomePtr(MetronomeComponent* tempMetPtr)
 }
 
 /*
-void mainMenu() //Main display to use before the animation section. Used as option screen to set things up, previously in the Controller.h
+void InterfaceComponent::mainMenu() //Main display to use before the animation section. Used as option screen to set things up.
 {
-std::cout << "Welcome to the metronome controller, your window to the metronome!" << std::endl;
+	label->setVisible(true);
 
 std::cout << "How many tempo/timeSig changes are there total?: ";
 std::cin >> totalChanges;
@@ -163,6 +161,7 @@ theMetronome->startMetronome(theRecord);
 }
 }
 */
+
 //[/MiscUserCode]
 
 
