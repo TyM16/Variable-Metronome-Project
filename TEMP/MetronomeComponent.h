@@ -45,6 +45,7 @@ private:
 
 	int totalChanges; // Holds how many total segment changes in the music.
 	int metronomeMode;
+	int xperiment;
 
 	//Private Function Prototypes.
 

@@ -9,7 +9,6 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "MetronomeComponent.h" //Include our metronome comp here. ONLY ADD COMPONENTS IN JUCE!!!
 #include "InterfaceComponent.h"
 
 //==============================================================================
