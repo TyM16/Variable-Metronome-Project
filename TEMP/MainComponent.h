@@ -32,8 +32,7 @@ private:
     //==============================================================================
     // Your private member variables go here...
     
-    InterfaceComponent interface; //Initialize our interface here.
-    MetronomeComponent metronome; //Initialize our metronome component here.
+	InterfaceComponent interface; //Initialize our interface here.
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

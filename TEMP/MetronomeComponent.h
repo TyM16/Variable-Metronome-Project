@@ -33,20 +33,25 @@ public:
 	void resized() override;
 	void update() override; // Define abstract from parent class here. Define what happens on refresh.
 
+	//Getters/Setters
+
+	void setMetronomeMode(int tempMetMode);
+
 private:
 
 	//Members
 	Metronome* theMetronome;
 	Record* theRecord;
 
-	int totalChanges; // Holds how many changes total in the music.
-	int metronomeMode; //Set this to switch between modes. 0 is general metronome and 1 is variable metronome!
+	int totalChanges; // Holds how many total segment changes in the music.
+	int metronomeMode;
 
-	//Function prototypes.
+	//Private Function Prototypes.
 
 	void resetTimerBPMIn(double clockSpeedBPM);
 	void generalMetronome(Graphics& g);
 	void variableMetronome(Graphics& g);
+	void testFPS(Graphics& g);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MetronomeComponent)
 

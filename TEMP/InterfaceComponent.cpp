@@ -32,8 +32,24 @@ InterfaceComponent::InterfaceComponent ()
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
+    StartScreenTitle.reset (new Label ("Start Screen Title",
+                                       TRANS("Variable Metronome Project")));
+    addAndMakeVisible (StartScreenTitle.get());
+    StartScreenTitle->setFont (Font (32.50f, Font::plain).withTypefaceStyle ("Bold"));
+    StartScreenTitle->setJustificationType (Justification::centred);
+    StartScreenTitle->setEditable (false, false, false);
+    StartScreenTitle->setColour (TextEditor::textColourId, Colours::black);
+    StartScreenTitle->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    StartScreenButton.reset (new TextButton ("Start Screen Button"));
+    addAndMakeVisible (StartScreenButton.get());
+    StartScreenButton->setButtonText (TRANS("Start!"));
+    StartScreenButton->addListener (this);
+    StartScreenButton->setColour (TextButton::buttonColourId, Colour (0xff3fa661));
+    StartScreenButton->setColour (TextButton::buttonOnColourId, Colour (0xff00ffae));
+
     mainMenuTitle.reset (new Label ("Main Menu Title",
-                                    TRANS("Variable Metronome Project")));
+                                    TRANS("Select a Metronome Mode:")));
     addAndMakeVisible (mainMenuTitle.get());
     mainMenuTitle->setFont (Font (32.50f, Font::plain).withTypefaceStyle ("Bold"));
     mainMenuTitle->setJustificationType (Justification::centred);
@@ -41,12 +57,26 @@ InterfaceComponent::InterfaceComponent ()
     mainMenuTitle->setColour (TextEditor::textColourId, Colours::black);
     mainMenuTitle->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    mainMenuTextButton.reset (new TextButton ("Main Menu Text Button"));
-    addAndMakeVisible (mainMenuTextButton.get());
-    mainMenuTextButton->setButtonText (TRANS("Continue"));
-    mainMenuTextButton->addListener (this);
-    mainMenuTextButton->setColour (TextButton::buttonColourId, Colour (0xff3fa661));
-    mainMenuTextButton->setColour (TextButton::buttonOnColourId, Colour (0xff00ffae));
+    startGeneralMetTextButton.reset (new TextButton ("General Metronome Text Button"));
+    addAndMakeVisible (startGeneralMetTextButton.get());
+    startGeneralMetTextButton->setTooltip (TRANS("Start a normal metronome."));
+    startGeneralMetTextButton->setButtonText (TRANS("General"));
+    startGeneralMetTextButton->addListener (this);
+    startGeneralMetTextButton->setColour (TextButton::buttonColourId, Colour (0xff463fa6));
+
+    startVariableMetTextButton.reset (new TextButton ("Variable Metronome Text Button"));
+    addAndMakeVisible (startVariableMetTextButton.get());
+    startVariableMetTextButton->setTooltip (TRANS("Start the variable metronome."));
+    startVariableMetTextButton->setButtonText (TRANS("Variable"));
+    startVariableMetTextButton->addListener (this);
+    startVariableMetTextButton->setColour (TextButton::buttonColourId, Colour (0xffd51349));
+
+    startFPSTextButton.reset (new TextButton ("FPS Test Text Button"));
+    addAndMakeVisible (startFPSTextButton.get());
+    startFPSTextButton->setTooltip (TRANS("Perform a test on FPS of the animated component."));
+    startFPSTextButton->setButtonText (TRANS("FPS Test"));
+    startFPSTextButton->addListener (this);
+    startFPSTextButton->setColour (TextButton::buttonColourId, Colour (0xff37b522));
 
 
     //[UserPreSize]
@@ -56,7 +86,12 @@ InterfaceComponent::InterfaceComponent ()
 
 
     //[Constructor] You can add your own custom stuff here..
-	animationOn = false; //REMOVE TEMP VARIABLE. Used to set metronome component animation on and off when a button is clicked.
+
+	//Set hidden menus to be invisible.
+	mainMenuTitle->setVisible(false);
+	startGeneralMetTextButton->setVisible(false);
+	startVariableMetTextButton->setVisible(false);
+	startFPSTextButton->setVisible(false);
     //[/Constructor]
 }
 
@@ -65,8 +100,12 @@ InterfaceComponent::~InterfaceComponent()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
+    StartScreenTitle = nullptr;
+    StartScreenButton = nullptr;
     mainMenuTitle = nullptr;
-    mainMenuTextButton = nullptr;
+    startGeneralMetTextButton = nullptr;
+    startVariableMetTextButton = nullptr;
+    startFPSTextButton = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -108,8 +147,12 @@ void InterfaceComponent::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    mainMenuTitle->setBounds ((getWidth() / 2) - (406 / 2), (getHeight() / 2) + -70, 406, 32);
-    mainMenuTextButton->setBounds ((getWidth() / 2) - (150 / 2), (getHeight() / 2), 150, 24);
+    StartScreenTitle->setBounds ((getWidth() / 2) - (406 / 2), (getHeight() / 2) + -70, 406, 32);
+    StartScreenButton->setBounds ((getWidth() / 2) - (150 / 2), (getHeight() / 2), 150, 24);
+    mainMenuTitle->setBounds ((getWidth() / 2) + -7 - (406 / 2), (getHeight() / 2) + -150, 406, 32);
+    startGeneralMetTextButton->setBounds ((getWidth() / 2) - (150 / 2), (getHeight() / 2) + -70, 150, 24);
+    startVariableMetTextButton->setBounds ((getWidth() / 2) - (150 / 2), (getHeight() / 2) + -20, 150, 24);
+    startFPSTextButton->setBounds ((getWidth() / 2) - (150 / 2), (getHeight() / 2) + 30, 150, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -119,10 +162,64 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == mainMenuTextButton.get())
+    if (buttonThatWasClicked == StartScreenButton.get())
     {
-        //[UserButtonCode_mainMenuTextButton] -- add your button handler code here..
-        //[/UserButtonCode_mainMenuTextButton]
+        //[UserButtonCode_StartScreenButton] -- add your button handler code here..
+
+		//Transition from start screen to main menu:
+
+		StartScreenTitle          ->setVisible(false);
+		StartScreenButton         ->setVisible(false);
+		mainMenuTitle             ->setVisible(true);
+		startGeneralMetTextButton ->setVisible(true);
+		startVariableMetTextButton->setVisible(true);
+		startFPSTextButton        ->setVisible(true);
+
+        //[/UserButtonCode_StartScreenButton]
+    }
+    else if (buttonThatWasClicked == startGeneralMetTextButton.get())
+    {
+        //[UserButtonCode_startGeneralMetTextButton] -- add your button handler code here..
+
+		//Transition from main menu to General Metronome Interface:
+
+		mainMenuTitle->setVisible(false);
+		startGeneralMetTextButton->setVisible(false);
+		startVariableMetTextButton->setVisible(false);
+		startFPSTextButton->setVisible(false);
+		addAndMakeVisible(generalMet);
+
+        //[/UserButtonCode_startGeneralMetTextButton]
+    }
+    else if (buttonThatWasClicked == startVariableMetTextButton.get())
+    {
+        //[UserButtonCode_startVariableMetTextButton] -- add your button handler code here..
+
+		//Transition from main menu to Variable Metronome:
+
+		mainMenuTitle->setVisible(false);
+		startGeneralMetTextButton->setVisible(false);
+		startVariableMetTextButton->setVisible(false);
+		startFPSTextButton->setVisible(false);
+		addAndMakeVisible(variableMet);
+
+        //[/UserButtonCode_startVariableMetTextButton]
+    }
+    else if (buttonThatWasClicked == startFPSTextButton.get())
+    {
+        //[UserButtonCode_startFPSTextButton] -- add your button handler code here..
+
+		//Transition from main menu to FPS Test:
+
+		mainMenuTitle->setVisible(false);
+		startGeneralMetTextButton->setVisible(false);
+		startVariableMetTextButton->setVisible(false);
+		startFPSTextButton->setVisible(false);
+		addAndMakeVisible(metronomeComp, -1);
+		metronomeComp.setMetronomeMode(2);
+		metronomeComp.setFramesPerSecond(60);
+
+        //[/UserButtonCode_startFPSTextButton]
     }
 
     //[UserbuttonClicked_Post]
@@ -132,50 +229,6 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-
-void InterfaceComponent::setMetronomePtr(MetronomeComponent* tempMetPtr)
-{
-	metronomeComp = tempMetPtr;
-}
-
-/*
-void InterfaceComponent::mainMenu() //Main display to use before the animation section. Used as option screen to set things up.
-{
-	label->setVisible(true);
-
-std::cout << "How many tempo/timeSig changes are there total?: ";
-std::cin >> totalChanges;
-
-for (int changeCount = 0; changeCount != totalChanges; changeCount++) { // While there are still more unique segments in the piece, ask for data and push to vectors.
-int tempBpm;
-int tempTimeSig;
-int tempMeasures;
-
-std::cout << "Taking data on segment " << changeCount << "." << std::endl;
-std::cout << "Please input a bpm as a double: "; //Input some other bpm, only a double/int or program crashes.
-std::cin >> tempBpm;
-bpmSetting.push_back(tempBpm);
-
-
-std::cout << "What is the timesignature number on the top?: ";
-std::cin >> tempTimeSig;
-timeSigTop.push_back(tempTimeSig);
-
-std::cout << "For how many measures?: ";
-std::cin >> tempMeasures;
-numMeasures.push_back(tempMeasures);
-}
-
-for (int i = 0; i != totalChanges; i++) { // Use the data to drive the metronome and update at each segment, stop when we reach the end of the piece.
-theRecord->setBpm(bpmSetting[i]);
-theRecord->setTimeSig(timeSigTop[i]);
-theRecord->setNumMeasures(numMeasures[i]);
-
-theMetronome->startMetronome(theRecord);
-}
-}
-*/
-
 //[/MiscUserCode]
 
 
@@ -196,16 +249,34 @@ BEGIN_JUCER_METADATA
     <ELLIPSE pos="71Cc 18Cc 296 224" fill="solid: ff2a6aa5" hasStroke="0"/>
     <ELLIPSE pos="-123Cc -26Cc 228 104" fill="solid: ff71820b" hasStroke="0"/>
   </BACKGROUND>
-  <LABEL name="Main Menu Title" id="228627bd4d459515" memberName="mainMenuTitle"
+  <LABEL name="Start Screen Title" id="228627bd4d459515" memberName="StartScreenTitle"
          virtualName="" explicitFocusOrder="0" pos="0Cc -70C 406 32" edTextCol="ff000000"
          edBkgCol="0" labelText="Variable Metronome Project" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="3.25e1" kerning="0" bold="1" italic="0" justification="36"
          typefaceStyle="Bold"/>
-  <TEXTBUTTON name="Main Menu Text Button" id="e90d81599e35f2d0" memberName="mainMenuTextButton"
+  <TEXTBUTTON name="Start Screen Button" id="e90d81599e35f2d0" memberName="StartScreenButton"
               virtualName="" explicitFocusOrder="0" pos="0Cc 0C 150 24" bgColOff="ff3fa661"
-              bgColOn="ff00ffae" buttonText="Continue" connectedEdges="0" needsCallback="1"
+              bgColOn="ff00ffae" buttonText="Start!" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
+  <LABEL name="Main Menu Title" id="c7b08488dbab2505" memberName="mainMenuTitle"
+         virtualName="" explicitFocusOrder="0" pos="-7Cc -150C 406 32"
+         edTextCol="ff000000" edBkgCol="0" labelText="Select a Metronome Mode:"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="3.25e1" kerning="0" bold="1"
+         italic="0" justification="36" typefaceStyle="Bold"/>
+  <TEXTBUTTON name="General Metronome Text Button" id="aac10be79918b669" memberName="startGeneralMetTextButton"
+              virtualName="" explicitFocusOrder="0" pos="0Cc -70C 150 24" tooltip="Start a normal metronome."
+              bgColOff="ff463fa6" buttonText="General" connectedEdges="0" needsCallback="1"
+              radioGroupId="0"/>
+  <TEXTBUTTON name="Variable Metronome Text Button" id="2c06a7966112a4d1" memberName="startVariableMetTextButton"
+              virtualName="" explicitFocusOrder="0" pos="0Cc -20C 150 24" tooltip="Start the variable metronome."
+              bgColOff="ffd51349" buttonText="Variable" connectedEdges="0"
+              needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="FPS Test Text Button" id="342202c67f7975ab" memberName="startFPSTextButton"
+              virtualName="" explicitFocusOrder="0" pos="0Cc 30C 150 24" tooltip="Perform a test on FPS of the animated component."
+              bgColOff="ff37b522" buttonText="FPS Test" connectedEdges="0"
+              needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

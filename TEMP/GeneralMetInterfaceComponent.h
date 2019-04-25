@@ -21,10 +21,6 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "MetronomeComponent.h" //Added this to pass a pointer from the main component to control the metronome states.
-#include "GeneralMetInterfaceComponent.h"
-#include "VariableMetInterfaceComponent.h"
-#include "MetronomeComponent.h"
 //[/Headers]
 
 
@@ -37,13 +33,12 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class InterfaceComponent  : public Component,
-                            public Button::Listener
+class GeneralMetInterfaceComponent  : public Component
 {
 public:
     //==============================================================================
-    InterfaceComponent ();
-    ~InterfaceComponent();
+    GeneralMetInterfaceComponent ();
+    ~GeneralMetInterfaceComponent();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
@@ -51,29 +46,18 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
-    void buttonClicked (Button* buttonThatWasClicked) override;
 
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-	GeneralMetInterfaceComponent  generalMet;
-	VariableMetInterfaceComponent variableMet;
-	MetronomeComponent            metronomeComp;
-
     //[/UserVariables]
 
     //==============================================================================
-    std::unique_ptr<Label> StartScreenTitle;
-    std::unique_ptr<TextButton> StartScreenButton;
-    std::unique_ptr<Label> mainMenuTitle;
-    std::unique_ptr<TextButton> startGeneralMetTextButton;
-    std::unique_ptr<TextButton> startVariableMetTextButton;
-    std::unique_ptr<TextButton> startFPSTextButton;
 
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InterfaceComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GeneralMetInterfaceComponent)
 };
 
 //[EndFile] You can add extra defines here...

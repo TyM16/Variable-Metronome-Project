@@ -18,38 +18,24 @@ MetronomeComponent::MetronomeComponent()
 	theRecord = new Record;        // Initialize the record.
 
 	setFramesPerSecond(0); //How fast should the window update per second. We can and should reset this later. We can also set 0 to stop animating.
-
-	metronomeMode = 0;
 }
 
 MetronomeComponent::~MetronomeComponent()
 {
 }
 
-int x = 1; //REMOVE. FOR TESTING ONLY.
-
 void MetronomeComponent::paint (Graphics& g)
 {
-
-	g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
-	g.setColour(getLookAndFeel().findColour(Slider::thumbColourId));
-
-	int radius = 150;
-
-	Point<float> p(getWidth() / 2.0f + 1.0f * radius * std::sin(getFrameCounter() * 0.04f),
-		getHeight() / 2.0f + 1.0f * radius * std::cos(getFrameCounter() * 0.04f));
-
-	g.fillEllipse(p.x, p.y, 30.0f, 30.0f);
-	
-	g.drawSingleLineText((String)(x), getParentWidth() / 2, getParentHeight() / 2, Justification::horizontallyJustified);
-	x=x++;
-	
 	if (metronomeMode == 0) {
 		generalMetronome(g);
 	}
 
 	else if (metronomeMode == 1) {
 		variableMetronome(g);
+	}
+
+	else if (metronomeMode == 2) {
+		testFPS(g);
 	}
 
 	else {/*If we reach here, we have an error!!*/ }
@@ -71,6 +57,29 @@ void MetronomeComponent::resetTimerBPMIn(double clockSpeedBPM) //Use this to rea
 	setFramesPerSecond(clockSpeedBPM / 60);
 }
 
+void MetronomeComponent::setMetronomeMode(int tempMetMode)
+{
+	metronomeMode = tempMetMode;
+}
+
 void MetronomeComponent::generalMetronome(Graphics& g) { return; }
 
 void MetronomeComponent::variableMetronome(Graphics& g) { return; }
+
+int x = 1; //REMOVE. FOR TESTING ONLY.
+
+void MetronomeComponent::testFPS(Graphics& g)
+{
+	g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
+	g.setColour(getLookAndFeel().findColour(Slider::thumbColourId));
+
+	int radius = 150;
+
+	Point<float> p(getWidth() / 2.0f + 1.0f * radius * std::sin(getFrameCounter() * 0.04f),
+		getHeight() / 2.0f + 1.0f * radius * std::cos(getFrameCounter() * 0.04f));
+
+	g.fillEllipse(p.x, p.y, 30.0f, 30.0f);
+
+	g.drawSingleLineText((String)(x), getParentWidth() / 2, getParentHeight() / 2, Justification::horizontallyJustified);
+	x = x++;
+}
