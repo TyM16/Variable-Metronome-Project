@@ -9,54 +9,40 @@
 #ifndef RECORD_H_
 #define RECORD_H_
 
-class Record 
+#include <vector>
+
+class Record
 {
-private:
-	
+  private:
 	// Initialize a series of vectors to hold the different sections of the piece. The number of vectors in each must always match.
 
-	std::vector<int> timeSigTop;       // How many beats per measure, represented by the top number of a timesignature in traditional sheet music.
+	std::vector<int> timeSigTop;	   // How many beats per measure, represented by the top number of a timesignature in traditional sheet music.
 	std::vector<int> numMeasuresinSeg; // how many measures to loop through per variable segment.
-	std::vector<double> bpmSetting;    // Beats per minute variable, will get converted to a less accurate form later.
+	std::vector<double> bpmSetting;	// Beats per minute variable, will get converted to a less accurate form later.
 
 	int totalSegments;
 
-public:
-	
+  public:
 	//Constructor
 	//Record(){}
 
 	//Setters
 
-	void setBpm(double theBPM) {
-		bpmSetting.push_back(theBPM);
-	}
+	void setBpm(double theBPM);
 
-	void setTimeSig(int theSig) {
-		timeSigTop.push_back(theSig);
-	}
+	void setTimeSig(int theSig);
 
-	void setNumMeasures(int measureInput) {
-		numMeasuresinSeg.push_back(measureInput);
-	}
+	void setNumMeasures(int measureInput);
 
 	//Getters
 	//TODO: Set safety checks later (bad index).
-	double getBpm(int index) {
-		return bpmSetting[index];
-	}
+	double getBpm(int index);
 
-	int getTimeSig(int index) {
-		return timeSigTop[index];
-	}
+	int getTimeSig(int index);
 
-	int getNumMeasures(int index) {
-		return numMeasuresinSeg[index];
-	}
+	int getNumMeasures(int index);
 
-	int getTotalSegments() {
-		return totalSegments;
-	}
+	int getTotalSegments();
 
 	//XML functions
 	//TODO: Add XML mapping functionality.
