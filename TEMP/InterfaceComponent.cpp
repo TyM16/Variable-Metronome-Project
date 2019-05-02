@@ -107,6 +107,7 @@ InterfaceComponent::~InterfaceComponent()
     startVariableMetTextButton = nullptr;
     startFPSTextButton = nullptr;
 
+
     //[Destructor]. You can add your own custom destruction code here..
     //[/Destructor]
 }
@@ -118,7 +119,7 @@ void InterfaceComponent::paint (Graphics& g)
     //[/UserPrePaint]
 
     g.fillAll (Colour (0xff323e44));
-	
+
     {
         float x = static_cast<float> ((getWidth() / 2) + 71 - (296 / 2)), y = static_cast<float> ((getHeight() / 2) + 18 - (224 / 2)), width = 296.0f, height = 224.0f;
         Colour fillColour = Colour (0xff2a6aa5);
