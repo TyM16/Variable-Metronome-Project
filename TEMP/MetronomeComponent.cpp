@@ -20,6 +20,32 @@ MetronomeComponent::MetronomeComponent()
 	xperiment = 1; //REMOVE. FOR TESTING ONLY.
 
 	setFramesPerSecond(0); //How fast should the window update per second. We can and should reset this later. We can also set 0 to stop animating.
+
+	//Xml stuff
+
+	//Export
+	XmlElement metronomeAttributes("Attributes"); //Create the outer node...
+	for (int i = 0; i < theRecord->getTotalSegments(); i++) //Create and add inner nodes..
+	{
+		XmlElement* segment = new XmlElement("Segment");
+		segment->setAttribute("BPM", theRecord->getBpm(i));
+		segment->setAttribute("Time Signature", theRecord->getTimeSig(i));
+		segment->setAttribute("Number of Measures", theRecord->getNumMeasures);
+
+		metronomeAttributes.addChildElement(segment);
+	};
+
+	String theXmlMap = metronomeAttributes.createDocument(String()); //Format the document based on the XML.. (May not need this one)
+
+	metronomeAttributes.writeToFile(File("xmlMap.xml"), String()); //Export the file. (Need to specify location better!!)
+
+	//Import
+	FileChooser *choiceWindow = new FileChooser("Select an XML File to Open", File(), "*.xml");
+
+	if (choiceWindow->browseForFileToOpen()) //If the user chose a file..
+	{
+		File theXmlMap = choiceWindow->getResult(); //Find out what it was. NOTE: we may need to add getURLResult for mobile support!
+	}
 }
 
 MetronomeComponent::~MetronomeComponent()

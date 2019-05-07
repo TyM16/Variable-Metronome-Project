@@ -43,9 +43,6 @@ class Record
 	int getNumMeasures(int index);
 
 	int getTotalSegments();
-
-	//XML functions
-	//TODO: Add XML mapping functionality.
 };
 
 #endif
