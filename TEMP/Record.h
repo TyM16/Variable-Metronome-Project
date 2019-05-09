@@ -10,6 +10,7 @@
 #define RECORD_H_
 
 #include <vector>
+#include "../JuceLibraryCode/JuceHeader.h"
 
 class Record
 {
@@ -19,6 +20,10 @@ class Record
 	std::vector<int> timeSigTop;	   // How many beats per measure, represented by the top number of a timesignature in traditional sheet music.
 	std::vector<int> numMeasuresinSeg; // how many measures to loop through per variable segment.
 	std::vector<double> bpmSetting;	// Beats per minute variable, will get converted to a less accurate form later.
+
+	//XML Containers
+	File* theXmlMap;
+	XmlElement* metronomeAttributes; //Create the outer node...
 
 	int totalSegments;
 
@@ -43,6 +48,12 @@ class Record
 	int getNumMeasures(int index);
 
 	int getTotalSegments();
+
+	void createXml();
+
+	void importXml();
+
+	void exportXml();
 };
 
 #endif
