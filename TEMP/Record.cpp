@@ -66,6 +66,8 @@ void Record::importXml()
 		theXmlMap = &(choiceWindowIn->getResult()); //Find out what it was. NOTE: we may need to add getURLResult for mobile support!
 		delete choiceWindowIn;
 	}
+
+	//Overwrite Variables TODO: Implement!
 }
 
 void Record::exportXml()
