@@ -22,7 +22,7 @@ class Record
 	std::vector<double> bpmSetting;	// Beats per minute variable, will get converted to a less accurate form later.
 
 	//XML Containers
-	File* theXmlMap;
+	XmlDocument* theXmlMap;
 	XmlElement* metronomeAttributes; //Create the outer node...
 
 	int totalSegments;
@@ -50,6 +50,8 @@ class Record
 	int getTotalSegments();
 
 	void createXml();
+
+	void createXmlFromMap(XmlElement newElement);
 
 	void importXml();
 

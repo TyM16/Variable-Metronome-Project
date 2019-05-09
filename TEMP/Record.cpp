@@ -43,8 +43,40 @@ int Record::getTotalSegments()
 
 void Record::createXml()
 {
+	if (metronomeAttributes == nullptr) //If a map exists, return.
+	{
+		delete metronomeAttributes;
+	}
+
 	//Create xml
 	metronomeAttributes = new XmlElement("Attributes");
+	for (int i = 0; i < getTotalSegments(); i++) //Create and add inner nodes..
+	{
+		XmlElement* segment = new XmlElement("Segment" + i);
+		segment->setAttribute("BPM", getBpm(i));
+		segment->setAttribute("Time Signature", getTimeSig(i));
+		segment->setAttribute("Number of Measures", getNumMeasures(i));
+
+		metronomeAttributes->addChildElement(segment);
+	};
+}
+
+void Record::createXmlFromMap(XmlElement newElement)
+{
+	//Create xml given an already initialized element
+
+
+	if (metronomeAttributes == nullptr)
+	{
+		delete metronomeAttributes;
+		*metronomeAttributes = newElement;
+	}
+
+	else 
+	{
+		*metronomeAttributes = newElement;
+	}
+
 	for (int i = 0; i < getTotalSegments(); i++) //Create and add inner nodes..
 	{
 		XmlElement* segment = new XmlElement("Segment" + i);
@@ -59,15 +91,23 @@ void Record::createXml()
 void Record::importXml()
 {
 	//Import
-	FileChooser *choiceWindowIn = new FileChooser("Select an XML File to Open", File(), "*.xml");
+	FileChooser* choiceWindowIn = new FileChooser("Select an XML File to Open", File(), "*.xml");
 
 	if (choiceWindowIn->browseForFileToOpen()) //If the user chose a file..
 	{
-		theXmlMap = &(choiceWindowIn->getResult()); //Find out what it was. NOTE: we may need to add getURLResult for mobile support!
+		theXmlMap = new XmlDocument(choiceWindowIn->getResult()); //Find out what it was. NOTE: we may need to add getURLResult for mobile support!
 		delete choiceWindowIn;
 	}
 
 	//Overwrite Variables TODO: Implement!
+	XmlElement* pxml = theXmlMap->getDocumentElement();
+	if (pxml != nullptr) //If an element exists...
+	{
+		createXmlFromMap(*pxml); //send the object itself NOT THE POINTER!!
+		pxml->getAttributeValue();
+		delete pxml;
+		delete theXmlMap;
+	}
 }
 
 void Record::exportXml()
