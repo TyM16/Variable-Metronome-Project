@@ -64,10 +64,13 @@ void MetronomeComponent::setMetronomeMode(int tempMetMode)
 	metronomeMode = tempMetMode;
 }
 
+/* -------------------General Metronome------------------- */
 void MetronomeComponent::generalMetronome(Graphics& g) { return; }
 
+/* -------------------Variable Metronome------------------- */
 void MetronomeComponent::variableMetronome(Graphics& g) { return; }
 
+/* -------------------Test-------------------*/
 void MetronomeComponent::testFPS(Graphics& g)
 {
 	g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));

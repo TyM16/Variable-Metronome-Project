@@ -43,8 +43,9 @@ int Record::getTotalSegments()
 
 void Record::createXml()
 {
-	if (metronomeAttributes == nullptr) //If a map exists, return.
+	if (metronomeAttributes != nullptr) //If a map exists, remove it before writing.
 	{
+		metronomeAttributes->deleteAllChildElements();
 		delete metronomeAttributes;
 	}
 
@@ -66,26 +67,13 @@ void Record::createXmlFromMap(XmlElement newElement)
 	//Create xml given an already initialized element
 
 
-	if (metronomeAttributes == nullptr)
+	if (metronomeAttributes != nullptr) //If a map already exists, delete it first.
 	{
+		metronomeAttributes->deleteAllChildElements();
 		delete metronomeAttributes;
-		*metronomeAttributes = newElement;
 	}
 
-	else 
-	{
-		*metronomeAttributes = newElement;
-	}
-
-	for (int i = 0; i < getTotalSegments(); i++) //Create and add inner nodes..
-	{
-		XmlElement* segment = new XmlElement("Segment" + i);
-		segment->setAttribute("BPM", getBpm(i));
-		segment->setAttribute("Time Signature", getTimeSig(i));
-		segment->setAttribute("Number of Measures", getNumMeasures(i));
-
-		metronomeAttributes->addChildElement(segment);
-	};
+	*metronomeAttributes = newElement;
 }
 
 void Record::importXml()
@@ -104,9 +92,21 @@ void Record::importXml()
 	if (pxml != nullptr) //If an element exists...
 	{
 		createXmlFromMap(*pxml); //send the object itself NOT THE POINTER!!
-		pxml->getAttributeValue();
 		delete pxml;
 		delete theXmlMap;
+	}
+
+	int i = 0;
+
+	forEachXmlChildElement(*metronomeAttributes, child)
+	{
+		if (child->hasTagName("Segment" + i)) 
+		{
+			child->getAttributeValue(0);
+			child->getAttributeValue(1);
+			child->getAttributeValue(2);
+		}
+		i++;
 	}
 }
 
