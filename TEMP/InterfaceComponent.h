@@ -20,11 +20,17 @@
 #pragma once
 
 //[Headers]     -- You can add your own extra header files here --
+
 #include "../JuceLibraryCode/JuceHeader.h"
+
 #include "MetronomeComponent.h" //Added this to pass a pointer from the main component to control the metronome states.
+
 #include "GeneralMetInterfaceComponent.h"
+
 #include "VariableMetInterfaceComponent.h"
+
 #include "MetronomeComponent.h"
+
 //[/Headers]
 
 
@@ -32,9 +38,13 @@
 //==============================================================================
 /**
                                                                     //[Comments]
-    An auto-generated component, created by the Projucer.
 
-    Describe your class and how it works here!
+	An auto-generated component, created by the Projucer.
+
+
+
+	Describe your class and how it works here!
+
                                                                     //[/Comments]
 */
 class InterfaceComponent  : public Component,
@@ -47,6 +57,7 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -57,9 +68,14 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+
 	GeneralMetInterfaceComponent  generalMet;
+
 	VariableMetInterfaceComponent variableMet;
+
 	MetronomeComponent            metronomeComp;
+
+
 
     //[/UserVariables]
 
@@ -70,6 +86,10 @@ private:
     std::unique_ptr<TextButton> startGeneralMetTextButton;
     std::unique_ptr<TextButton> startVariableMetTextButton;
     std::unique_ptr<TextButton> startFPSTextButton;
+    std::unique_ptr<TextButton> goBackButton;
+    Path internalPath1;
+    Path internalPath2;
+    Path internalPath3;
 
 
     //==============================================================================
@@ -77,5 +97,6 @@ private:
 };
 
 //[EndFile] You can add extra defines here...
+
 //[/EndFile]
 

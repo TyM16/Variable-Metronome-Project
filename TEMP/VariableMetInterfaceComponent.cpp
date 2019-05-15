@@ -18,18 +18,21 @@
 */
 
 //[Headers] You can add your own extra header files here...
+
 //[/Headers]
 
 #include "VariableMetInterfaceComponent.h"
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
+
 //[/MiscUserDefs]
 
 //==============================================================================
 VariableMetInterfaceComponent::VariableMetInterfaceComponent ()
 {
     //[Constructor_pre] You can add your own custom stuff here..
+
     //[/Constructor_pre]
 
     BPMSlider.reset (new Slider ("BPM Slider"));
@@ -83,8 +86,16 @@ VariableMetInterfaceComponent::VariableMetInterfaceComponent ()
     BPMLabel2->setColour (TextEditor::textColourId, Colours::black);
     BPMLabel2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
+    goBackToOptions.reset (new TextButton ("go Back to Options"));
+    addAndMakeVisible (goBackToOptions.get());
+    goBackToOptions->setButtonText (TRANS("Back"));
+    goBackToOptions->addListener (this);
+
+    goBackToOptions->setBounds (392, 384, 150, 24);
+
 
     //[UserPreSize]
+
     //[/UserPreSize]
 
     setSize (600, 400);
@@ -92,7 +103,11 @@ VariableMetInterfaceComponent::VariableMetInterfaceComponent ()
 
     //[Constructor] You can add your own custom stuff here..
 
+
+
 	//addChildComponent(metronomeComp); //Add our metronome here..
+
+
 
     //[/Constructor]
 }
@@ -100,6 +115,7 @@ VariableMetInterfaceComponent::VariableMetInterfaceComponent ()
 VariableMetInterfaceComponent::~VariableMetInterfaceComponent()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+
     //[/Destructor_pre]
 
     BPMSlider = nullptr;
@@ -109,9 +125,11 @@ VariableMetInterfaceComponent::~VariableMetInterfaceComponent()
     mainMenuTitle = nullptr;
     BPMLabel = nullptr;
     BPMLabel2 = nullptr;
+    goBackToOptions = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
+
     //[/Destructor]
 }
 
@@ -119,17 +137,20 @@ VariableMetInterfaceComponent::~VariableMetInterfaceComponent()
 void VariableMetInterfaceComponent::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
+
     //[/UserPrePaint]
 
     g.fillAll (Colour (0xff323e44));
 
     //[UserPaint] Add your own custom painting code here..
+
     //[/UserPaint]
 }
 
 void VariableMetInterfaceComponent::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
+
     //[/UserPreResize]
 
     BPMSlider->setBounds ((getWidth() / 2) + 134 - (81 / 2), (getHeight() / 2) + -12 - (103 / 2), 81, 103);
@@ -140,52 +161,67 @@ void VariableMetInterfaceComponent::resized()
     BPMLabel->setBounds ((getWidth() / 2) + 134 - (80 / 2), (getHeight() / 2) + -83 - (24 / 2), 80, 24);
     BPMLabel2->setBounds ((getWidth() / 2) + -126 - (152 / 2), (getHeight() / 2) + -43 - (24 / 2), 152, 24);
     //[UserResized] Add your own custom resize handling here..
+
     //[/UserResized]
 }
 
 void VariableMetInterfaceComponent::sliderValueChanged (Slider* sliderThatWasMoved)
 {
     //[UsersliderValueChanged_Pre]
+
     //[/UsersliderValueChanged_Pre]
 
     if (sliderThatWasMoved == BPMSlider.get())
     {
         //[UserSliderCode_BPMSlider] -- add your slider handling code here..
+
         //[/UserSliderCode_BPMSlider]
     }
     else if (sliderThatWasMoved == TimeSigLabel.get())
     {
         //[UserSliderCode_TimeSigLabel] -- add your slider handling code here..
+
         //[/UserSliderCode_TimeSigLabel]
     }
 
     //[UsersliderValueChanged_Post]
+
     //[/UsersliderValueChanged_Post]
 }
 
 void VariableMetInterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
+
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == submitButton.get())
     {
         //[UserButtonCode_submitButton] -- add your button handler code here..
+
         //[/UserButtonCode_submitButton]
     }
     else if (buttonThatWasClicked == finishButton.get())
     {
         //[UserButtonCode_finishButton] -- add your button handler code here..
+
         //[/UserButtonCode_finishButton]
+    }
+    else if (buttonThatWasClicked == goBackToOptions.get())
+    {
+        //[UserButtonCode_goBackToOptions] -- add your button handler code here..
+        //[/UserButtonCode_goBackToOptions]
     }
 
     //[UserbuttonClicked_Post]
+
     //[/UserbuttonClicked_Post]
 }
 
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
 //[/MiscUserCode]
 
 
@@ -205,8 +241,8 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="ff323e44"/>
   <SLIDER name="BPM Slider" id="3c0ff8161d83480" memberName="BPMSlider"
           virtualName="" explicitFocusOrder="0" pos="134.5Cc -11.5Cc 81 103"
-          min="1" max="2e2" int="5e-1" style="Rotary" textBoxPos="TextBoxBelow"
-          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"
+          min="1.0" max="200.0" int="0.5" style="Rotary" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <TEXTBUTTON name="Submit Button" id="b6d14e3312d66e49" memberName="submitButton"
               virtualName="" explicitFocusOrder="0" pos="0Cc 125Cc 150 24"
@@ -217,26 +253,29 @@ BEGIN_JUCER_METADATA
               buttonText="Done!" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="Time Signature Label" id="b8b703d6c6b35317" memberName="TimeSigLabel"
           virtualName="" explicitFocusOrder="0" pos="-127Cc 1Cc 150 48"
-          min="1" max="3e1" int="1" style="LinearHorizontal" textBoxPos="TextBoxBelow"
-          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"
+          min="1.0" max="30.0" int="1.0" style="LinearHorizontal" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <LABEL name="Main Menu Title" id="c7b08488dbab2505" memberName="mainMenuTitle"
          virtualName="" explicitFocusOrder="0" pos="1Cc -175C 406 32"
          edTextCol="ff000000" edBkgCol="0" labelText="Input Segment  :"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="3.25e1" kerning="0" bold="1"
+         fontname="Default font" fontsize="32.5" kerning="0.0" bold="1"
          italic="0" justification="36" typefaceStyle="Bold"/>
   <LABEL name="BPM Label" id="4d0333bdb1c60708" memberName="BPMLabel"
          virtualName="" explicitFocusOrder="0" pos="134Cc -83Cc 80 24"
          edTextCol="ff000000" edBkgCol="0" labelText="BPM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="3e1" kerning="0" bold="0" italic="0" justification="36"/>
+         fontsize="30.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="BPM Label" id="5a9df514fd076dc7" memberName="BPMLabel2"
          virtualName="" explicitFocusOrder="0" pos="-126Cc -43Cc 152 24"
          edTextCol="ff000000" edBkgCol="0" labelText="Time Signature"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="2.5e1" kerning="0" bold="0"
+         fontname="Default font" fontsize="25.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
+  <TEXTBUTTON name="go Back to Options" id="60370749cc0cc748" memberName="goBackToOptions"
+              virtualName="" explicitFocusOrder="0" pos="392 384 150 24" buttonText="Back"
+              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
@@ -245,5 +284,6 @@ END_JUCER_METADATA
 
 
 //[EndFile] You can add extra defines here...
+
 //[/EndFile]
 

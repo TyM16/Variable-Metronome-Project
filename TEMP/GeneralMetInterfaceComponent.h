@@ -20,7 +20,9 @@
 #pragma once
 
 //[Headers]     -- You can add your own extra header files here --
+
 #include "../JuceLibraryCode/JuceHeader.h"
+
 //[/Headers]
 
 
@@ -28,9 +30,13 @@
 //==============================================================================
 /**
                                                                     //[Comments]
-    An auto-generated component, created by the Projucer.
 
-    Describe your class and how it works here!
+	An auto-generated component, created by the Projucer.
+
+
+
+	Describe your class and how it works here!
+
                                                                     //[/Comments]
 */
 class GeneralMetInterfaceComponent  : public Component
@@ -42,6 +48,7 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -51,6 +58,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+
     //[/UserVariables]
 
     //==============================================================================
@@ -61,5 +69,6 @@ private:
 };
 
 //[EndFile] You can add extra defines here...
+
 //[/EndFile]
 

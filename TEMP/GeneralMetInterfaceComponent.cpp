@@ -18,39 +18,46 @@
 */
 
 //[Headers] You can add your own extra header files here...
+
 //[/Headers]
 
 #include "GeneralMetInterfaceComponent.h"
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
+
 //[/MiscUserDefs]
 
 //==============================================================================
 GeneralMetInterfaceComponent::GeneralMetInterfaceComponent ()
 {
     //[Constructor_pre] You can add your own custom stuff here..
+
     //[/Constructor_pre]
 
 
     //[UserPreSize]
+
     //[/UserPreSize]
 
     setSize (600, 400);
 
 
     //[Constructor] You can add your own custom stuff here..
+
     //[/Constructor]
 }
 
 GeneralMetInterfaceComponent::~GeneralMetInterfaceComponent()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+
     //[/Destructor_pre]
 
 
 
     //[Destructor]. You can add your own custom destruction code here..
+
     //[/Destructor]
 }
 
@@ -58,26 +65,31 @@ GeneralMetInterfaceComponent::~GeneralMetInterfaceComponent()
 void GeneralMetInterfaceComponent::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
+
     //[/UserPrePaint]
 
     g.fillAll (Colour (0xff323e44));
 
     //[UserPaint] Add your own custom painting code here..
+
     //[/UserPaint]
 }
 
 void GeneralMetInterfaceComponent::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
+
     //[/UserPreResize]
 
     //[UserResized] Add your own custom resize handling here..
+
     //[/UserResized]
 }
 
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
 //[/MiscUserCode]
 
 
@@ -103,5 +115,6 @@ END_JUCER_METADATA
 
 
 //[EndFile] You can add extra defines here...
+
 //[/EndFile]
 

@@ -20,8 +20,11 @@
 #pragma once
 
 //[Headers]     -- You can add your own extra header files here --
+
 #include "../JuceLibraryCode/JuceHeader.h"
+
 #include "MetronomeComponent.h"
+
 //[/Headers]
 
 
@@ -29,9 +32,13 @@
 //==============================================================================
 /**
                                                                     //[Comments]
-    An auto-generated component, created by the Projucer.
 
-    Describe your class and how it works here!
+	An auto-generated component, created by the Projucer.
+
+
+
+	Describe your class and how it works here!
+
                                                                     //[/Comments]
 */
 class VariableMetInterfaceComponent  : public Component,
@@ -45,6 +52,7 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -56,9 +64,13 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+
 	int SegNum; //Hold the number of segments we have gone through.
 
+
+
 	MetronomeComponent* metronomeComp;
+
     //[/UserVariables]
 
     //==============================================================================
@@ -69,6 +81,7 @@ private:
     std::unique_ptr<Label> mainMenuTitle;
     std::unique_ptr<Label> BPMLabel;
     std::unique_ptr<Label> BPMLabel2;
+    std::unique_ptr<TextButton> goBackToOptions;
 
 
     //==============================================================================
