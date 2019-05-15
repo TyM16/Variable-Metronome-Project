@@ -52,7 +52,7 @@ InterfaceComponent::InterfaceComponent ()
     StartScreenButton->setColour (TextButton::buttonOnColourId, Colour (0xff00ffae));
 
     mainMenuTitle.reset (new Label ("Main Menu Title",
-                                    TRANS("Select a Metronome Mode")));
+                                    TRANS("Select a Metronome Mode:")));
     addAndMakeVisible (mainMenuTitle.get());
     mainMenuTitle->setFont (Font ("Bahnschrift", 40.00f, Font::plain).withTypefaceStyle ("Regular"));
     mainMenuTitle->setJustificationType (Justification::centredTop);
@@ -88,21 +88,9 @@ InterfaceComponent::InterfaceComponent ()
     goBackButton->setConnectedEdges (Button::ConnectedOnBottom);
     goBackButton->addListener (this);
 
-    goBackButton->setBounds (112, 360, 150, 24);
-
-    internalPath1.startNewSubPath (478.0f, 272.0f);
-    internalPath1.lineTo (448.0f, 322.0f);
+    internalPath1.startNewSubPath (854.0f, 504.0f);
+    internalPath1.lineTo (824.0f, 554.0f);
     internalPath1.closeSubPath();
-
-    internalPath2.startNewSubPath (512.0f, 176.0f);
-    internalPath2.lineTo (544.0f, 392.0f);
-    internalPath2.lineTo (484.0f, 392.0f);
-    internalPath2.closeSubPath();
-
-    internalPath3.startNewSubPath (408.0f, 196.0f);
-    internalPath3.lineTo (436.0f, 392.0f);
-    internalPath3.lineTo (372.0f, 392.0f);
-    internalPath3.closeSubPath();
 
 
     //[UserPreSize]
@@ -161,7 +149,7 @@ void InterfaceComponent::paint (Graphics& g)
     g.fillAll (Colour (0xff323e44));
 
     {
-        float x = 268.0f, y = 92.0f, width = 384.0f, height = 368.0f;
+        float x = static_cast<float> ((getWidth() / 2) + 173 - (384 / 2)), y = static_cast<float> ((getHeight() / 2) + -94), width = 384.0f, height = 368.0f;
         Colour fillColour = Colour (0xfff4c780);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -170,7 +158,7 @@ void InterfaceComponent::paint (Graphics& g)
     }
 
     {
-        float x = 404.0f, y = 164.0f, width = 112.0f, height = 228.0f;
+        float x = static_cast<float> ((getWidth() / 2) + 173 - (112 / 2)), y = static_cast<float> ((getHeight() / 2) + -22), width = 112.0f, height = 228.0f;
         Colour fillColour = Colour (0xff664111);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -179,7 +167,7 @@ void InterfaceComponent::paint (Graphics& g)
     }
 
     {
-        float x = 460.0f, y = 164.0f, width = 56.0f, height = 228.0f;
+        float x = static_cast<float> ((getWidth() / 2) + 201 - (56 / 2)), y = static_cast<float> ((getHeight() / 2) + -22), width = 56.0f, height = 228.0f;
         Colour fillColour = Colour (0xff582906);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -215,7 +203,7 @@ void InterfaceComponent::paint (Graphics& g)
     }
 
     {
-        int x = 418, y = 196, width = 84, height = 84;
+        int x = (getWidth() / 2) + 173 - (84 / 2), y = (getHeight() / 2) + 10, width = 84, height = 84;
         Colour fillColour = Colour (0xfff13636);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -224,7 +212,7 @@ void InterfaceComponent::paint (Graphics& g)
     }
 
     {
-        int x = 460, y = 196, width = 42, height = 84;
+        int x = (getWidth() / 2) + 194 - (42 / 2), y = (getHeight() / 2) + 10, width = 42, height = 84;
         Colour fillColour = Colour (0xffe30c0c);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -233,7 +221,7 @@ void InterfaceComponent::paint (Graphics& g)
     }
 
     {
-        int x = 444, y = 200, width = 15, height = 75;
+        int x = (getWidth() / 2) + 164 - (15 / 2), y = (getHeight() / 2) + 10, width = 15, height = 75;
         Colour fillColour = Colours::azure;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -242,7 +230,7 @@ void InterfaceComponent::paint (Graphics& g)
     }
 
     {
-        int x = 460, y = 200, width = 15, height = 75;
+        int x = (getWidth() / 2) + 180 - (15 / 2), y = (getHeight() / 2) + 10, width = 15, height = 75;
         Colour fillColour = Colour (0xffbfc8d1);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -251,7 +239,7 @@ void InterfaceComponent::paint (Graphics& g)
     }
 
     {
-        float x = 455.0f, y = 176.0f, width = 8.0f, height = 92.0f;
+        float x = static_cast<float> ((getWidth() / 2) + 173 - (8 / 2)), y = static_cast<float> ((getHeight() / 2) + -10), width = 8.0f, height = 92.0f;
         Colour fillColour = Colour (0xff454144);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -260,7 +248,7 @@ void InterfaceComponent::paint (Graphics& g)
     }
 
     {
-        float x = 449.0f, y = 188.0f, width = 20.0f, height = 20.0f;
+        float x = static_cast<float> ((getWidth() / 2) + 173 - (20 / 2)), y = static_cast<float> ((getHeight() / 2) + 2), width = 20.0f, height = 20.0f;
         Colour fillColour = Colour (0xff454144);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -279,12 +267,25 @@ void InterfaceComponent::resized()
 
     //[/UserPreResize]
 
-    StartScreenTitle->setBounds ((getWidth() / 2) - (406 / 2), (getHeight() / 2) + -70, 406, 32);
+    StartScreenTitle->setBounds ((getWidth() / 2) + 3 - (412 / 2), (getHeight() / 2) + -70, 412, 36);
     StartScreenButton->setBounds ((getWidth() / 2) - (150 / 2), (getHeight() / 2), 150, 24);
-    mainMenuTitle->setBounds ((getWidth() / 2) - (406 / 2), (getHeight() / 2) + -150, 406, 32);
+    mainMenuTitle->setBounds ((getWidth() / 2) + 1 - (416 / 2), (getHeight() / 2) + -154, 416, 40);
     startGeneralMetTextButton->setBounds ((getWidth() / 2) + -6 - (150 / 2), (getHeight() / 2) + -62, 150, 24);
     startVariableMetTextButton->setBounds ((getWidth() / 2) + -6 - (150 / 2), (getHeight() / 2) + -22, 150, 24);
     startFPSTextButton->setBounds ((getWidth() / 2) + -6 - (150 / 2), (getHeight() / 2) + 18, 150, 24);
+    goBackButton->setBounds ((getWidth() / 2) + -6 - (150 / 2), (getHeight() / 2) + 62, 150, 24);
+    internalPath2.clear();
+    internalPath2.startNewSubPath (static_cast<float> ((getWidth() / 2) + 225), static_cast<float> ((getHeight() / 2) + 10));
+    internalPath2.lineTo (static_cast<float> ((getWidth() / 2) + 257), static_cast<float> ((getHeight() / 2) + 206));
+    internalPath2.lineTo (static_cast<float> ((getWidth() / 2) + 197), static_cast<float> ((getHeight() / 2) + 206));
+    internalPath2.closeSubPath();
+
+    internalPath3.clear();
+    internalPath3.startNewSubPath (static_cast<float> ((getWidth() / 2) + 121), static_cast<float> ((getHeight() / 2) + 10));
+    internalPath3.lineTo (static_cast<float> ((getWidth() / 2) + 149), static_cast<float> ((getHeight() / 2) + 206));
+    internalPath3.lineTo (static_cast<float> ((getWidth() / 2) + 85), static_cast<float> ((getHeight() / 2) + 206));
+    internalPath3.closeSubPath();
+
     //[UserResized] Add your own custom resize handling here..
 
 	metronomeComp.setBounds(getLocalBounds());
@@ -342,7 +343,7 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 
 		mainMenuTitle->setVisible(false);
 
-		goBackButton->setVisible(true);
+		goBackButton->setVisible(false);
 
 		startGeneralMetTextButton->setVisible(false);
 
@@ -364,15 +365,15 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 
 		//Transition from main menu to Variable Metronome:
 
-		mainMenuTitle->setVisible(false);
+		//mainMenuTitle->setVisible(false);
 
-		startGeneralMetTextButton->setVisible(false);
+		//startGeneralMetTextButton->setVisible(false);
 
-		startVariableMetTextButton->setVisible(false);
+		//startVariableMetTextButton->setVisible(false);
 
-		startFPSTextButton->setVisible(false);
+		//startFPSTextButton->setVisible(false);
 
-		goBackButton->setVisible(true);
+		//goBackButton->setVisible(false);
 
 		addAndMakeVisible(variableMet);
 
@@ -400,7 +401,7 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 
 		startFPSTextButton->setVisible(false);
 
-		goBackButton->setVisible(true);
+		goBackButton->setVisible(false);
 
 		addAndMakeVisible(metronomeComp);
 
@@ -415,8 +416,8 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == goBackButton.get())
     {
         //[UserButtonCode_goBackButton] -- add your button handler code here..
-        //[/UserButtonCode_goBackButton]
-        StartScreenTitle->setVisible(true);
+		StartScreenTitle->setVisible(true);
+
 
 		StartScreenButton->setVisible(true);
 
@@ -429,6 +430,7 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 		startVariableMetTextButton->setVisible(false);
 
 		startFPSTextButton->setVisible(false);
+        //[/UserButtonCode_goBackButton]
     }
 
     //[UserbuttonClicked_Post]
@@ -457,37 +459,38 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff323e44">
-    <ELLIPSE pos="268 92 384 368" fill="solid: fff4c780" hasStroke="0"/>
-    <ROUNDRECT pos="404 164 112 228" cornerSize="1.0" fill="solid: ff664111"
+    <ELLIPSE pos="173Cc -94C 384 368" fill="solid: fff4c780" hasStroke="0"/>
+    <ROUNDRECT pos="173Cc -22C 112 228" cornerSize="1" fill="solid: ff664111"
                hasStroke="0"/>
-    <ROUNDRECT pos="460 164 56 228" cornerSize="1.0" fill="solid: ff582906"
+    <ROUNDRECT pos="201Cc -22C 56 228" cornerSize="1" fill="solid: ff582906"
                hasStroke="0"/>
-    <PATH pos="0 0 100 100" fill="solid: ff2aa52b" hasStroke="0" nonZeroWinding="1">s 478 272 l 448 322 x</PATH>
-    <PATH pos="0 0 100 100" fill="solid: ff582906" hasStroke="0" nonZeroWinding="1">s 512 176 l 544 392 l 484 392 x</PATH>
-    <PATH pos="0 0 100 100" fill="solid: ff664111" hasStroke="0" nonZeroWinding="1">s 408 196 l 436 392 l 372 392 x</PATH>
-    <RECT pos="418 196 84 84" fill="solid: fff13636" hasStroke="0"/>
-    <RECT pos="460 196 42 84" fill="solid: ffe30c0c" hasStroke="0"/>
-    <RECT pos="444 200 15 75" fill="solid: fff0ffff" hasStroke="0"/>
-    <RECT pos="460 200 15 75" fill="solid: ffbfc8d1" hasStroke="0"/>
-    <ROUNDRECT pos="455 176 8 92" cornerSize="10.0" fill="solid: ff454144" hasStroke="0"/>
-    <ELLIPSE pos="449 188 20 20" fill="solid: ff454144" hasStroke="0"/>
+    <PATH pos="-471 0 100 100" fill="solid: ff2aa52b" hasStroke="0" nonZeroWinding="1">s 854 504 l 824 554 x</PATH>
+    <PATH pos="-471 0 100 100" fill="solid: ff582906" hasStroke="0" nonZeroWinding="1">s 225C 10C l 257C 206C l 197C 206C x</PATH>
+    <PATH pos="-471 0 100 100" fill="solid: ff664111" hasStroke="0" nonZeroWinding="1">s 121C 10C l 149C 206C l 85C 206C x</PATH>
+    <RECT pos="173Cc 10C 84 84" fill="solid: fff13636" hasStroke="0"/>
+    <RECT pos="194Cc 10C 42 84" fill="solid: ffe30c0c" hasStroke="0"/>
+    <RECT pos="164.5Cc 10C 15 75" fill="solid: fff0ffff" hasStroke="0"/>
+    <RECT pos="180.5Cc 10C 15 75" fill="solid: ffbfc8d1" hasStroke="0"/>
+    <ROUNDRECT pos="173Cc -10C 8 92" cornerSize="1e1" fill="solid: ff454144"
+               hasStroke="0"/>
+    <ELLIPSE pos="173Cc 2C 20 20" fill="solid: ff454144" hasStroke="0"/>
   </BACKGROUND>
   <LABEL name="Start Screen Title" id="228627bd4d459515" memberName="StartScreenTitle"
-         virtualName="" explicitFocusOrder="0" pos="0Cc -70C 406 32" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="3Cc -70C 412 36" edTextCol="ff000000"
          edBkgCol="0" labelText="Variable Metronome Project" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Bahnschrift"
-         fontsize="32.5" kerning="0.0" bold="1" italic="0" justification="36"
+         fontsize="3.25e1" kerning="0" bold="1" italic="0" justification="36"
          typefaceStyle="Bold"/>
   <TEXTBUTTON name="Start Screen Button" id="e90d81599e35f2d0" memberName="StartScreenButton"
               virtualName="" explicitFocusOrder="0" pos="0Cc 0C 150 24" bgColOff="ff3fa661"
               bgColOn="ff00ffae" buttonText="Start!" connectedEdges="0" needsCallback="1"
               radioGroupId="0"/>
   <LABEL name="Main Menu Title" id="c7b08488dbab2505" memberName="mainMenuTitle"
-         virtualName="" explicitFocusOrder="0" pos="0Cc -150C 406 32"
+         virtualName="" explicitFocusOrder="0" pos="1Cc -154C 416 40"
          edTextCol="ff000000" edBkgCol="0" labelText="Select a Metronome Mode:"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Bahnschrift" fontsize="40.0" kerning="0.0" bold="0"
-         italic="0" justification="12"/>
+         fontname="Bahnschrift" fontsize="4e1" kerning="0" bold="0" italic="0"
+         justification="12"/>
   <TEXTBUTTON name="General Metronome Text Button" id="aac10be79918b669" memberName="startGeneralMetTextButton"
               virtualName="" explicitFocusOrder="0" pos="-6Cc -62C 150 24"
               tooltip="Start a normal metronome." bgColOff="ff463fa6" bgColOn="ff1b1f22"
@@ -501,7 +504,7 @@ BEGIN_JUCER_METADATA
               bgColOff="ff37b522" buttonText="FPS Test" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="go Back Buton" id="34896acc693570fc" memberName="goBackButton"
-              virtualName="" explicitFocusOrder="0" pos="112 360 150 24" buttonText="Back"
+              virtualName="" explicitFocusOrder="0" pos="-6Cc 62C 150 24" buttonText="Back"
               connectedEdges="8" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 

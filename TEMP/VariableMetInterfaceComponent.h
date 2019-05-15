@@ -82,6 +82,8 @@ private:
     std::unique_ptr<Label> BPMLabel;
     std::unique_ptr<Label> BPMLabel2;
     std::unique_ptr<TextButton> goBackToOptions;
+    std::unique_ptr<Slider> NumMeasures;
+    std::unique_ptr<Label> label;
 
 
     //==============================================================================
