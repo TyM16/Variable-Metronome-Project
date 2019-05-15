@@ -23,7 +23,7 @@ class Record
 
 	//XML Containers
 	XmlDocument* theXmlMap;
-	XmlElement* metronomeAttributes; //Create the outer node...
+	XmlElement* metronomeSettings; //Create the outer node...
 
 	int totalSegments;
 
