@@ -1,47 +1,91 @@
 #include "Record.h"
 
+
+
 // Setters
 
+
+
 void Record::setBpm(double theBPM)
+
 {
-    bpmSetting.push_back(theBPM);
+
+	bpmSetting.push_back(theBPM);
+
 }
+
+
 
 void Record::setTimeSig(int theSig)
+
 {
-    timeSigTop.push_back(theSig);
+
+	timeSigTop.push_back(theSig);
+
 }
 
+
+
 void Record::setNumMeasures(int measureInput)
+
 {
-    numMeasuresinSeg.push_back(measureInput);
+
+	numMeasuresinSeg.push_back(measureInput);
+
 }
+
+
 
 // Getters
 
+
+
 double Record::getBpm(int index)
+
 {
-    return bpmSetting[index];
+
+	return bpmSetting[index];
+
 }
+
+
 
 int Record::getTimeSig(int index)
+
 {
-    return timeSigTop[index];
+
+	return timeSigTop[index];
+
 }
+
+
 
 int Record::getNumMeasures(int index)
+
 {
-    return numMeasuresinSeg[index];
+
+	return numMeasuresinSeg[index];
+
 }
 
+
+
 int Record::getTotalSegments()
+
 {
-    return totalSegments;
+
+	return totalSegments;
+
 }
+
+
 
 //Xml stuff
 
+
+
 void Record::createXml()
+
 {
 	if (metronomeSettings != nullptr) //If a map exists, remove it before writing.
 	{
@@ -51,16 +95,22 @@ void Record::createXml()
 
 	//Create xml
 	metronomeSettings = new XmlElement("Map Settings");
+
 	for (int i = 0; i < getTotalSegments(); i++) //Create and add inner nodes..
+
 	{
+
 		XmlElement* segment = new XmlElement("Segment" + i);
 
 		segment->setAttribute("BPM", getBpm(i));
+
 		segment->setAttribute("Time Signature", getTimeSig(i));
+
 		segment->setAttribute("Number of Measures", getNumMeasures(i));
 
 		metronomeSettings->addChildElement(segment);
 	};
+
 }
 
 void Record::createXmlFromMap(XmlElement newMap)
@@ -78,14 +128,21 @@ void Record::createXmlFromMap(XmlElement newMap)
 }
 
 void Record::importXml()
+
 {
+
 	//Import
+
 	FileChooser* choiceWindowIn = new FileChooser("Select an XML File to Open", File(), "*.xml");
+
+
 
 	if (choiceWindowIn->browseForFileToOpen()) //If the user chose a file..
 	{
+
 		theXmlMap = new XmlDocument(choiceWindowIn->getResult()); //Find out what it was. NOTE: we may need to add getURLResult for mobile support!
 		delete choiceWindowIn;
+
 	}
 
 	else  //If the user doesn't choose a file, return without doing anything further. We could add a message here if we wanted to.
@@ -115,14 +172,24 @@ void Record::importXml()
 	}
 }
 
+
+
 void Record::exportXml()
+
 {
+
 	//Export
-	FileChooser *choiceWindowOut = new FileChooser("Please Name your XML File", File(), "*.xml");
+
+	FileChooser* choiceWindowOut = new FileChooser("Please Name your XML File", File(), "*.xml");
+
+
 
 	if (choiceWindowOut->browseForFileToSave(true))
+
 	{
 		metronomeSettings->writeToFile(File(choiceWindowOut->getResult()), String()); //Export the file. (Need to specify location better!!)
 		delete choiceWindowOut;
+
 	}
+
 }
