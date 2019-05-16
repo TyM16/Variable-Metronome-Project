@@ -22,6 +22,8 @@
 //[Headers]     -- You can add your own extra header files here --
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "MetronomeComponent.h"
+#include "Record.h"
 
 //[/Headers]
 
@@ -39,7 +41,8 @@
 
                                                                     //[/Comments]
 */
-class GeneralMetInterfaceComponent  : public Component
+class GeneralMetInterfaceComponent  : public Component,
+                                      public Button::Listener
 {
 public:
     //==============================================================================
@@ -48,11 +51,12 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-
+	void setMetronomePtr(MetronomeComponent* metPtr);
     //[/UserMethods]
 
     void paint (Graphics& g) override;
     void resized() override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
 
 
 
@@ -62,6 +66,10 @@ private:
     //[/UserVariables]
 
     //==============================================================================
+    std::unique_ptr<TextButton> PlayPause;
+    std::unique_ptr<TextButton> goMenu;
+
+	MetronomeComponent* metronomeComp;
 
 
     //==============================================================================

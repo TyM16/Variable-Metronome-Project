@@ -117,8 +117,6 @@ VariableMetInterfaceComponent::VariableMetInterfaceComponent ()
 
     //[Constructor] You can add your own custom stuff here..
 
-
-
 	//addChildComponent(metronomeComp); //Add our metronome here..
 
 
@@ -158,6 +156,9 @@ void VariableMetInterfaceComponent::paint (Graphics& g)
 
     g.fillAll (Colour (0xff323e44));
 
+	metronomeComp->theRecord->setBpm(60);
+	metronomeComp->theRecord->setNumMeasures(1);
+	metronomeComp->theRecord->setTimeSig(4);
     //[UserPaint] Add your own custom painting code here..
 
     //[/UserPaint]
@@ -193,18 +194,19 @@ void VariableMetInterfaceComponent::sliderValueChanged (Slider* sliderThatWasMov
     if (sliderThatWasMoved == BPMSlider.get())
     {
         //[UserSliderCode_BPMSlider] -- add your slider handling code here..
-
+		metronomeComp->theRecord->setBpmNoPush(BPMSlider->getValue(), currentElement);
         //[/UserSliderCode_BPMSlider]
     }
     else if (sliderThatWasMoved == TimeSigLabel.get())
     {
         //[UserSliderCode_TimeSigLabel] -- add your slider handling code here..
-
+		metronomeComp->theRecord->setTimeSigNoPush(TimeSigLabel->getValue(), currentElement);
         //[/UserSliderCode_TimeSigLabel]
     }
     else if (sliderThatWasMoved == NumMeasures.get())
     {
         //[UserSliderCode_NumMeasures] -- add your slider handling code here..
+		metronomeComp->theRecord->setNumMeasuresNoPush(NumMeasures->getValue(), currentElement);
         //[/UserSliderCode_NumMeasures]
     }
 
@@ -222,12 +224,16 @@ void VariableMetInterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == submitButton.get())
     {
         //[UserButtonCode_submitButton] -- add your button handler code here..
+		currentElement++;
         //[/UserButtonCode_submitButton]
     }
     else if (buttonThatWasClicked == finishButton.get())
     {
         //[UserButtonCode_finishButton] -- add your button handler code here..
-
+		metronomeComp->theRecord->setSegments(currentElement + 1);
+		setVisible(false);
+		metronomeComp->setVisible(true);
+		metronomeComp->setFramesPerSecond(60);
         //[/UserButtonCode_finishButton]
     }
     else if (buttonThatWasClicked == goBackToOptions.get())
@@ -243,9 +249,12 @@ void VariableMetInterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 }
 
 
-
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
+void VariableMetInterfaceComponent::setMetronomePtr(MetronomeComponent* metPtr)
+{
+	metronomeComp = metPtr;
+}
 //[/MiscUserCode]
 
 

@@ -66,15 +66,17 @@ public:
 
 	void setBpm(double theBPM);
 
-
+	void setBpmNoPush(double theBPM, int element);
 
 	void setTimeSig(int theSig);
 
-
+	void setTimeSigNoPush(int theSig, int element);
 
 	void setNumMeasures(int measureInput);
 
+	void setNumMeasuresNoPush(int measureInput, int element);
 
+	void setSegments(int segNum);
 
 	//Getters
 

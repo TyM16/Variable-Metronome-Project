@@ -21,9 +21,10 @@
 
 //[Headers]     -- You can add your own extra header files here --
 
-#include "../JuceLibraryCode/JuceHeader.h"
 
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "MetronomeComponent.h"
+#include "Record.h"
 
 //[/Headers]
 
@@ -60,13 +61,13 @@ public:
     void sliderValueChanged (Slider* sliderThatWasMoved) override;
     void buttonClicked (Button* buttonThatWasClicked) override;
 
+	void setMetronomePtr(MetronomeComponent* metPtr);
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 
-	int SegNum; //Hold the number of segments we have gone through.
-
+	int currentElement = 0; //Hold the current segment we are working on.
 
 
 	MetronomeComponent* metronomeComp;

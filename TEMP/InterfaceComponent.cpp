@@ -110,6 +110,8 @@ InterfaceComponent::InterfaceComponent ()
 
 	goBackButton->setVisible(false);
 
+	addChildComponent(metronomeComp);
+
 	startGeneralMetTextButton->setVisible(false);
 
 	startVariableMetTextButton->setVisible(false);
@@ -351,9 +353,13 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 
 		startFPSTextButton->setVisible(false);
 
-		addAndMakeVisible(generalMet);
+		metronomeComp.setVisible(true);
 
+		addAndMakeVisible(generalMet, -1);
 
+		generalMet.setMetronomePtr(&metronomeComp);
+
+		metronomeComp.setFramesPerSecond(60);
 
         //[/UserButtonCode_startGeneralMetTextButton]
     }
@@ -377,7 +383,7 @@ void InterfaceComponent::buttonClicked (Button* buttonThatWasClicked)
 
 		addAndMakeVisible(variableMet);
 
-
+		variableMet.setMetronomePtr(&metronomeComp);
 
         //[/UserButtonCode_startVariableMetTextButton]
     }

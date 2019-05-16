@@ -7,31 +7,42 @@
 
 
 void Record::setBpm(double theBPM)
-
 {
-
 	bpmSetting.push_back(theBPM);
+}
 
+void Record::setBpmNoPush(double theBPM, int element)
+{
+	bpmSetting[element] = theBPM;
 }
 
 
 
 void Record::setTimeSig(int theSig)
-
 {
-
 	timeSigTop.push_back(theSig);
+}
 
+void Record::setTimeSigNoPush(int theSig, int element)
+{
+	timeSigTop[element] = theSig;
 }
 
 
 
 void Record::setNumMeasures(int measureInput)
-
 {
-
 	numMeasuresinSeg.push_back(measureInput);
+}
 
+void Record::setNumMeasuresNoPush(int measureInput, int element)
+{
+	numMeasuresinSeg[element] = measureInput;
+}
+
+void Record::setSegments(int segNum)
+{
+	totalSegments = segNum;
 }
 
 
